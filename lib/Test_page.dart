@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_proj/Sqflite.dart';
 
-class homepage extends StatefulWidget {
-  const homepage({super.key});
+class Testmethodspage extends StatefulWidget {
+  const Testmethodspage({super.key});
 
   @override
-  State<homepage> createState() => _homepageState();
+  State<Testmethodspage> createState() => _TestmethodspageState();
 }
 
-class _homepageState extends State<homepage> {
+class _TestmethodspageState extends State<Testmethodspage> {
   final SqFlite sqFlite = SqFlite();
 
   @override
