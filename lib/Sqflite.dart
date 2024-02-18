@@ -30,4 +30,17 @@ class SqFlite {
         )
   ''');
   }
+
+  // sqflite has 4 main methods
+
+  // SELECT == readData
+  // DELETE
+  // UPDATE
+  // INSERT
+
+  readData({required String sql}) async {
+    Database? mydb = await getdp();
+    var response = await mydb!.rawQuery(sql);
+    return response;
+  }
 }
