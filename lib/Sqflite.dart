@@ -55,4 +55,10 @@ class SqFlite {
     var response = await mydb!.rawInsert(sql);
     return response;
   }
+
+  deleteData({required String sql}) async {
+    Database? mydb = await getdp();
+    var response = await mydb!.rawDelete(sql);
+    return response;
+  }
 }
