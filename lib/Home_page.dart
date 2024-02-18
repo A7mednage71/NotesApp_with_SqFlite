@@ -12,7 +12,7 @@ class homepage extends StatelessWidget {
           children: [
             MaterialButton(
               onPressed: () {},
-              color: Colors.red,
+              color: const Color.fromARGB(255, 139, 244, 54),
               child: const Text('SAVE DATA'),
             ),
             MaterialButton(
