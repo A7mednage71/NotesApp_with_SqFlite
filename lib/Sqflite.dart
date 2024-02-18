@@ -40,7 +40,13 @@ class SqFlite {
 
   readData({required String sql}) async {
     Database? mydb = await getdp();
-    var response = await mydb!.rawQuery(sql);
+    List<Map> response = await mydb!.rawQuery(sql);
+    return response;
+  }
+
+  updateData({required String sql}) async {
+    Database? mydb = await getdp();
+    int response = await mydb!.rawUpdate(sql);
     return response;
   }
 }
