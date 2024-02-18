@@ -68,4 +68,10 @@ class SqFlite {
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
     print('++++++++++++++ onUpgrade ++++++++++++++++');
   }
+
+  DeleteDatabase() async {
+    String databasepath = await getDatabasesPath(); // get the databasepath
+    String path = join(databasepath, 'Notesdp.dp');
+    await deleteDatabase(path);
+  }
 }

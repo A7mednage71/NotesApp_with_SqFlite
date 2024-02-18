@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_proj/Homebage.dart';
 
-
 void main() {
   runApp(const NotesApp());
 }
