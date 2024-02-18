@@ -30,14 +30,27 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(
         backgroundColor: Colors.amber,
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(10),
-        itemCount: notes.length,
-        itemBuilder: (context, index) {
-          return NoteItem(
-            note: notes[index],
-          );
-        },
+      body: Column(
+        children: [
+          MaterialButton(
+            onPressed: () {
+              sqFlite.DeleteDatabase();
+            },
+            child: const Text('Delete all Notes'),
+          ),
+          SizedBox(
+            height: 720,
+            child: ListView.builder(
+              padding: const EdgeInsets.all(10),
+              itemCount: notes.length,
+              itemBuilder: (context, index) {
+                return NoteItem(
+                  note: notes[index],
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
