@@ -27,10 +27,11 @@ class SqFlite {
     await db.execute('''
         CREATE TABLE "Notes" (
           'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+          'Title' TEXT NOT NULL,
           'Note' TEXT NOT NULL 
         )
   ''');
-      print('++++++++++++++ _oncreate ++++++++++++++++');
+    print('++++++++++++++ _oncreate ++++++++++++++++');
   }
 
   // sqflite has 4 main methods
