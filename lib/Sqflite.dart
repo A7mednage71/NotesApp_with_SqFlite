@@ -17,7 +17,8 @@ class SqFlite {
     String databasepath = await getDatabasesPath(); // get the databasepath
     String path = join(databasepath, 'Notesdp.dp');
     // add name of database to the path ==> databasepath/Notes.dp
-    Database Mydatabase = await openDatabase(path, onCreate: _oncreate);
+    Database Mydatabase = await openDatabase(path,
+        onCreate: _oncreate, version: 1, onUpgrade: _onUpgrade);
     return Mydatabase;
   }
 
@@ -61,4 +62,6 @@ class SqFlite {
     var response = await mydb!.rawDelete(sql);
     return response;
   }
+
+  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {}
 }
