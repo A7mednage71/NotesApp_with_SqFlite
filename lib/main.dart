@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite_proj/Home_page.dart';
+import 'package:sqflite_proj/Homebage.dart';
+
 
 void main() {
   runApp(const NotesApp());
@@ -11,7 +12,7 @@ class NotesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: homepage(),
+      home: Homepage(),
     );
   }
 }
