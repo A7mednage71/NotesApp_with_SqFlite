@@ -5,6 +5,24 @@ class homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MaterialButton(
+              onPressed: () {},
+              color: Colors.red,
+              child: const Text('SAVE DATA'),
+            ),
+            MaterialButton(
+              onPressed: () {},
+              color: Colors.red,
+              child: const Text('READ DATA'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
