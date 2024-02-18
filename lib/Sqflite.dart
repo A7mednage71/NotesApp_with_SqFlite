@@ -49,4 +49,10 @@ class SqFlite {
     int response = await mydb!.rawUpdate(sql);
     return response;
   }
+
+  insertData({required String sql}) async {
+    Database? mydb = await getdp();
+    var response = await mydb!.rawInsert(sql);
+    return response;
+  }
 }
