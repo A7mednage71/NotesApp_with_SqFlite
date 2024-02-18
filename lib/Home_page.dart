@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_proj/Sqflite.dart';
 
-class homepage extends StatelessWidget {
+class homepage extends StatefulWidget {
   const homepage({super.key});
+
+  @override
+  State<homepage> createState() => _homepageState();
+}
+
+class _homepageState extends State<homepage> {
+  final SqFlite sqFlite = SqFlite();
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +19,12 @@ class homepage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MaterialButton(
-              onPressed: () {},
+              onPressed: () async {
+                int response = await sqFlite.insertData(
+                  sql: "INSERT INTO 'Notes' ('Note') VALUES ('note one')",
+                );
+                print(response);
+              },
               color: const Color.fromARGB(255, 139, 244, 54),
               child: const Text('SAVE DATA'),
             ),

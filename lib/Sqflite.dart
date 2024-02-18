@@ -26,11 +26,11 @@ class SqFlite {
   FutureOr<void> _oncreate(Database db, int version) async {
     await db.execute('''
         CREATE TABLE "Notes" (
-          'id' INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT ,
+          'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
           'Note' TEXT NOT NULL 
         )
   ''');
-    print('++++++++++++++ _oncreate ++++++++++++++++');
+      print('++++++++++++++ _oncreate ++++++++++++++++');
   }
 
   // sqflite has 4 main methods
