@@ -37,6 +37,15 @@ class _homepageState extends State<homepage> {
               color: Colors.red,
               child: const Text('READ DATA'),
             ),
+            MaterialButton(
+              onPressed: () async {
+                int response = await sqFlite.deleteData(
+                    sql: "DELETE FROM 'Notes' WHERE id = 2 ");
+                print(response);
+              },
+              color: Color.fromARGB(255, 173, 157, 233),
+              child: const Text('DELETE DATA'),
+            ),
           ],
         ),
       ),
