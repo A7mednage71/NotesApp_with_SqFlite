@@ -26,10 +26,11 @@ class SqFlite {
   FutureOr<void> _oncreate(Database db, int version) async {
     await db.execute('''
         CREATE TABLE "Notes" (
-          id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
-          Notes TEXT NOT NULL 
+          'id' INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT ,
+          'Note' TEXT NOT NULL 
         )
   ''');
+    print('++++++++++++++ _oncreate ++++++++++++++++');
   }
 
   // sqflite has 4 main methods
@@ -63,5 +64,7 @@ class SqFlite {
     return response;
   }
 
-  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {}
+  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    print('++++++++++++++ onUpgrade ++++++++++++++++');
+  }
 }
