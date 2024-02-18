@@ -28,7 +28,9 @@ class SqFlite {
         CREATE TABLE "Notes" (
           'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
           'Title' TEXT NOT NULL,
-          'Note' TEXT NOT NULL 
+          'Note' TEXT NOT NULL ,
+          'color' TEXT NOT NULL
+
         )
   ''');
     print('++++++++++++++ _oncreate ++++++++++++++++');
