@@ -29,7 +29,11 @@ class _homepageState extends State<homepage> {
               child: const Text('SAVE DATA'),
             ),
             MaterialButton(
-              onPressed: () {},
+              onPressed: () async {
+                List<Map> response =
+                    await sqFlite.readData(sql: "SELECT * FROM 'Notes'");
+                print(response);
+              },
               color: Colors.red,
               child: const Text('READ DATA'),
             ),
