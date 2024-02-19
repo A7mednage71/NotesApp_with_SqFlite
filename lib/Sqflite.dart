@@ -65,6 +65,7 @@ class SqFlite {
   // DELETE
   // UPDATE
   // INSERT
+  
 
   readData({required String sql}) async {
     Database? mydb = await getdp();
