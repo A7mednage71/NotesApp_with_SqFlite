@@ -21,7 +21,8 @@ class _HomepageState extends State<Homepage> {
   }
 
   Future<void> getdata() async {
-    notes = await sqFlite.readData(sql: "SELECT * FROM 'Notes'");
+    //notes = await sqFlite.readData(sql: "SELECT * FROM 'Notes'");
+    notes = await sqFlite.read(table: "Notes");
     print("++++++++++read notes+++++++++");
     setState(() {});
   }
@@ -63,6 +64,7 @@ class _HomepageState extends State<Homepage> {
         },
         child: const Icon(Icons.add),
       ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }

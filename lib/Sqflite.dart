@@ -103,21 +103,24 @@ class SqFlite {
     return response;
   }
 
-  update({required String table}) async {
+  update(
+      {required String table,
+      required Map<String, Object?> values,
+      required String where}) async {
     Database? mydb = await getdp();
-    List<Map> response = await mydb!.query(table);
+    int response = await mydb!.update(table, values, where: where);
     return response;
   }
 
-  insert({required String table}) async {
+  insert({required String table, required Map<String, Object?> values}) async {
     Database? mydb = await getdp();
-    var response = await mydb!.query(table);
+    int response = await mydb!.insert(table, values);
     return response;
   }
 
-  delete({required String table}) async {
+  delete({required String table, String? where}) async {
     Database? mydb = await getdp();
-    var response = await mydb!.query(table);
+    int response = await mydb!.delete(table, where: where);
     return response;
   }
 

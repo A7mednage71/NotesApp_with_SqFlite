@@ -79,14 +79,20 @@ class _EditNoteState extends State<EditNote> {
                     borderRadius: BorderRadius.circular(20)),
                 onPressed: () async {
                   _formKey.currentState!.save();
-                  int res = await sqFlite.updateData(
-                    sql: '''
-                        UPDATE Notes SET 
-                        note  =  '$Note',
-                        color =  '$Color',
-                        Title =  '$Title'
-                        WHERE id = ${widget.note['id']} 
-                        ''',
+                  // int res = await sqFlite.updateData(
+                  //   sql: '''
+                  //       UPDATE Notes SET
+                  //       note  =  '$Note',
+                  //       color =  '$Color',
+                  //       Title =  '$Title'
+                  //       WHERE id = ${widget.note['id']}
+                  //       ''',
+                  // );
+
+                  int res = await sqFlite.update(
+                    table: "Notes",
+                    values: {"note": Note, "color": Color, "title": Title},
+                    where: "id = ${widget.note['id']}",
                   );
 
                   print(res);

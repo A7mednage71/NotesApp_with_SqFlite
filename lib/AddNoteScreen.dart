@@ -79,10 +79,13 @@ class _AddNoteState extends State<AddNote> {
                     borderRadius: BorderRadius.circular(20)),
                 onPressed: () async {
                   _formKey.currentState!.save();
-                  int res = await sqFlite.insertData(
-                    sql: '''INSERT INTO Notes (Note, Title, color)
-                              VALUES ('$Note', '$Title', '$Color')''',
-                  );
+                  // int res = await sqFlite.insertData(
+                  //   sql: '''INSERT INTO Notes (Note, Title, color)
+                  //             VALUES ('$Note', '$Title', '$Color')''',
+                  // );
+                  dynamic res = await sqFlite.insert(
+                      table: "Notes",
+                      values: {'Note': Note, 'Title': Title, 'color': Color});
 
                   print(res);
 

@@ -50,9 +50,11 @@ class _NoteItemState extends State<NoteItem> {
               IconButton(
                 onPressed: () async {
                   SqFlite sqFlite = SqFlite();
-                  int res = await sqFlite.deleteData(
-                      sql:
-                          "DELETE FROM 'Notes' WHERE id = ${widget.note['id']} ");
+                  // int res = await sqFlite.deleteData(
+                  //     sql:
+                  //         "DELETE FROM 'Notes' WHERE id = ${widget.note['id']} ");
+                  int res = await sqFlite.delete(
+                      table: "Notes", where: "id = ${widget.note['id']}");
                   print(res);
 
                   if (res > 0) {
