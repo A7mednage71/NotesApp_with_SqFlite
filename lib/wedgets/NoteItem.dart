@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_proj/Homebage.dart';
+import 'package:sqflite_proj/Sqflite.dart';
 
-class NoteItem extends StatelessWidget {
-  const NoteItem({super.key, this.note});
+class NoteItem extends StatefulWidget {
+  NoteItem({super.key, this.note, required this.notes});
   final note;
+  final List notes;
+  @override
+  State<NoteItem> createState() => _NoteItemState();
+}
+
+class _NoteItemState extends State<NoteItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,9 +26,9 @@ class NoteItem extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('${note['Note']}'),
-                    Text('${note['Title']}'),
-                    Text('${note['color']}'),
+                    Text('${widget.note['Note']}'),
+                    Text('${widget.note['Title']}'),
+                    Text('${widget.note['color']}'),
                   ],
                 ),
               ),
@@ -32,7 +40,21 @@ class NoteItem extends StatelessWidget {
                     color: Colors.blue,
                   )),
               IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  SqFlite sqFlite = SqFlite();
+                  int res = await sqFlite.deleteData(
+                      sql:
+                          "DELETE FROM 'Notes' WHERE id = ${widget.note['id']} ");
+                  print(res);
+
+                  if (res > 0) {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => Homepage(),
+                    ));
+                    // widget.notes.removeWhere(
+                    //     (element) => element['id'] == widget.note['id']);
+                  }
+                },
                 icon: const Icon(
                   Icons.delete,
                   color: Colors.red,

@@ -48,6 +48,7 @@ class _HomepageState extends State<Homepage> {
               itemBuilder: (context, index) {
                 return NoteItem(
                   note: notes[index],
+                  notes: notes,
                 );
               },
             ),
@@ -62,7 +63,6 @@ class _HomepageState extends State<Homepage> {
         },
         child: const Icon(Icons.add),
       ),
-      
     );
   }
 }
