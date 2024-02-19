@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/rendering.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -36,6 +37,30 @@ class SqFlite {
     print('++++++++++++++ _oncreate ++++++++++++++++');
   }
 
+  // if i want to create a new table and want to create more than one you can use batching
+  FutureOr<void> _oncreatebybatching(Database db, int version) async {
+    Batch batch = db.batch();
+    batch.execute('''
+        CREATE TABLE "Students" (
+          'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+          'Title' TEXT NOT NULL,
+          'Note' TEXT NOT NULL ,
+          'color' TEXT NOT NULL
+
+        )
+  ''');
+    batch.execute('''
+        CREATE TABLE "friends" (
+          'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+          'Title' TEXT NOT NULL,
+          'Note' TEXT NOT NULL ,
+          'color' TEXT NOT NULL
+
+        )
+  ''');
+    batch.commit();
+    print('++++++++++++++ _oncreate ++++++++++++++++');
+  }
   // sqflite has 4 main methods
 
   // SELECT == readData
@@ -68,7 +93,10 @@ class SqFlite {
   }
 
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    // await db.execute("ALTER TABLE Notes ADD COLUMN color TEXT");
     print('++++++++++++++ onUpgrade ++++++++++++++++');
+    // YOU can add coulmn by changing the vesion with using onupgrade method.
+    // or delete the database finally.
   }
 
   DeleteDatabase() async {
