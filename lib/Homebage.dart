@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_proj/AddNoteScreen.dart';
 import 'package:sqflite_proj/Sqflite.dart';
 import 'package:sqflite_proj/wedgets/NoteItem.dart';
 
@@ -13,7 +14,7 @@ class _HomepageState extends State<Homepage> {
   final SqFlite sqFlite = SqFlite();
   List notes = [];
   @override
-  void initState() {
+  initState() {
     // TODO: implement initState
     super.initState();
     getdata();
@@ -22,6 +23,7 @@ class _HomepageState extends State<Homepage> {
   Future<void> getdata() async {
     notes = await sqFlite.readData(sql: "SELECT * FROM 'Notes'");
     print("++++++++++read notes+++++++++");
+    setState(() {});
   }
 
   @override
@@ -52,6 +54,15 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext) {
+            return const AddNote();
+          }));
+        },
+        child: const Icon(Icons.add),
+      ),
+      
     );
   }
 }
