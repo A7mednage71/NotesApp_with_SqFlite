@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sqflite_proj/Homebage.dart';
 import 'package:sqflite_proj/Sqflite.dart';
 
-class AddNote extends StatefulWidget {
-  const AddNote({super.key});
-
+class EditNote extends StatefulWidget {
+  const EditNote({super.key, this.note});
+  final note;
   @override
-  State<AddNote> createState() => _AddNoteState();
+  State<EditNote> createState() => _EditNoteState();
 }
 
-class _AddNoteState extends State<AddNote> {
+class _EditNoteState extends State<EditNote> {
   GlobalKey<FormState> _formKey = GlobalKey();
 
   SqFlite sqFlite = SqFlite();
@@ -22,7 +22,7 @@ class _AddNoteState extends State<AddNote> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Note'),
+        title: const Text('Edit Note'),
         backgroundColor: Colors.amber,
         centerTitle: true,
       ),
@@ -79,9 +79,14 @@ class _AddNoteState extends State<AddNote> {
                     borderRadius: BorderRadius.circular(20)),
                 onPressed: () async {
                   _formKey.currentState!.save();
-                  int res = await sqFlite.insertData(
-                    sql: '''INSERT INTO Notes (Note, Title, color)
-                              VALUES ('$Note', '$Title', '$Color')''',
+                  int res = await sqFlite.updateData(
+                    sql: '''
+                        UPDATE Notes SET 
+                        note  =  '$Note',
+                        color =  '$Color',
+                        Title =  '$Title'
+                        WHERE id = ${widget.note['id']} 
+                        ''',
                   );
 
                   print(res);
@@ -91,13 +96,13 @@ class _AddNoteState extends State<AddNote> {
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (BuildContext) => const Homepage(),
+                          builder: (BuildContext) => Homepage(),
                         ),
                         (route) => false);
                   }
                 },
                 color: Colors.amber,
-                child: Text('Add Note'),
+                child: Text('Edit Note'),
               )
             ],
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_proj/Homebage.dart';
 import 'package:sqflite_proj/Sqflite.dart';
+import 'package:sqflite_proj/editNoteScreen.dart';
 
 class NoteItem extends StatefulWidget {
   NoteItem({super.key, this.note, required this.notes});
@@ -34,7 +35,14 @@ class _NoteItemState extends State<NoteItem> {
               ),
               const Spacer(),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (BuildContext) {
+                      return EditNote(
+                        note: widget.note,
+                      );
+                    }));
+                  },
                   icon: const Icon(
                     Icons.edit,
                     color: Colors.blue,

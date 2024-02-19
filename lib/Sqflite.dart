@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/rendering.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -31,7 +30,6 @@ class SqFlite {
           'Title' TEXT NOT NULL,
           'Note' TEXT NOT NULL ,
           'color' TEXT NOT NULL
-
         )
   ''');
     print('++++++++++++++ _oncreate ++++++++++++++++');
@@ -92,6 +90,37 @@ class SqFlite {
     return response;
   }
 
+  // sqflite has 4 main methods without sql orders
+
+  // SELECT == readData
+  // DELETE
+  // UPDATE
+  // INSERT
+
+  read({required String table}) async {
+    Database? mydb = await getdp();
+    List<Map> response = await mydb!.query(table);
+    return response;
+  }
+
+  update({required String table}) async {
+    Database? mydb = await getdp();
+    List<Map> response = await mydb!.query(table);
+    return response;
+  }
+
+  insert({required String table}) async {
+    Database? mydb = await getdp();
+    var response = await mydb!.query(table);
+    return response;
+  }
+
+  delete({required String table}) async {
+    Database? mydb = await getdp();
+    var response = await mydb!.query(table);
+    return response;
+  }
+
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
     // await db.execute("ALTER TABLE Notes ADD COLUMN color TEXT");
     print('++++++++++++++ onUpgrade ++++++++++++++++');
@@ -99,7 +128,7 @@ class SqFlite {
     // or delete the database finally.
   }
 
-  DeleteDatabase() async {
+  deletemyDatabase() async {
     String databasepath = await getDatabasesPath(); // get the databasepath
     String path = join(databasepath, 'Notesdp.dp');
     await deleteDatabase(path);

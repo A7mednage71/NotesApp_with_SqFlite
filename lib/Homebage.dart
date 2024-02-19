@@ -36,7 +36,7 @@ class _HomepageState extends State<Homepage> {
         children: [
           MaterialButton(
             onPressed: () {
-              sqFlite.DeleteDatabase();
+              sqFlite.deletemyDatabase();
             },
             child: const Text('Delete all Notes'),
           ),
