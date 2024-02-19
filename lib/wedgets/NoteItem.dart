@@ -19,6 +19,8 @@ class NoteItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('${note['Note']}'),
+                    Text('${note['Title']}'),
+                    Text('${note['color']}'),
                   ],
                 ),
               ),
